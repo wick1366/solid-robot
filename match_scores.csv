@@ -1,0 +1,7 @@
+Group,Team1,Team1 Runs,Wickets,Overs,Team2,Team2 Runs,Wickets,Overs,Result
+A,Team A1,35,2,6.0,Team A3,46,3,6.0,Team A3 won
+A,Team A1,76,4,6.0,Team A4,78,1,5.2,Team A4 won
+A,Team A2,35,0,3.0,Team A3,34,4,6.0,Team A2 won
+A,Team A2,45,1,6.0,Team A4,48,2,4.5,Team A4 won
+A,Team A1,56,1,6.0,Team A2,48,4,6.0,Team A1 won
+A,Team A3,38,5,6.0,Team A4,32,4,6.0,Team A3 won
