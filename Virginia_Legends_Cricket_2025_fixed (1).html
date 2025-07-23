@@ -604,14 +604,14 @@ tr:hover {
 <script>
   function fetchAndLoadCSV() {
     // Fetch and update match results
-    fetch('match_scores.txt')
+    fetch('match_scores.csv')
       .then(response => response.text())
       .then(csvText => {
         displayResultsFromCSV(csvText);
       });
 
     // Fetch and update group tables
-    fetch('sample_tournament_results.txt')
+    fetch('tournament_results.txt')
       .then(response => response.text())
       .then(csvText => {
         parseCSV(csvText);
