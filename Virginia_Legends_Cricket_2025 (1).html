@@ -1,0 +1,727 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Virginia Legends Cricket 2025</title>
+<style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to right, #f5f7fa, #c3cfe2);
+      padding: 10px;
+      text-align: center;
+    }
+    h1 {
+      background: linear-gradient(to right, #ff6a00, #ee0979);
+      color: white;
+      padding: 15px;
+      border-radius: 10px;
+    }
+    input[type="file"] {
+      padding: 8px;
+      margin: 10px 0;
+      border: 2px dashed #6200ea;
+      background: #ede7f6;
+      border-radius: 10px;
+    }
+    button {
+      padding: 10px 20px;
+      background: linear-gradient(to right, #43cea2, #185a9d);
+      border: none;
+      color: white;
+      font-weight: bold;
+      border-radius: 20px;
+      cursor: pointer;
+      margin-bottom: 20px;
+    }
+    #resultsBox {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+      background: #fff9c4;
+      border-left: 5px solid #4caf50;
+      border-radius: 8px;
+      padding: 10px;
+      max-width: 800px;
+      margin: auto;
+      font-size: 16px;
+    }
+  
+    table {
+      width: 95%;
+      border-collapse: collapse;
+      margin: 10px auto;
+      font-size: 14px;
+    }
+    th, td {
+      border: 1px solid #999;
+      padding: 8px;
+      text-align: center;
+    }
+    th {
+      background-color: #4caf50;
+      color: white;
+    }
+    .group-section {
+  overflow-x: hidden;
+      margin-top: 20px;
+    }
+    .group-title {
+      font-size: 20px;
+      font-weight: bold;
+      margin: 10px 0;
+      text-align: center;
+    }
+    .top-team-row {
+  background: linear-gradient(to right, #1e88e5, #42a5f5) !important;
+  color: white;
+  font-weight: bold;
+  animation: blink 4s ease-in-out infinite;
+}
+  background-color: #2196f3 !important;
+  color: white;
+  font-weight: bold;
+  animation: blink 4s ease-in-out infinite;
+}
+      background-color: #e3f2fd;
+      font-weight: bold;
+    }
+    .bottom-team-row {
+  background-color: #fce4ec;
+  font-weight: bold;
+}
+      background-color: #ffebee;
+    }
+
+    @media screen and (max-width: 600px) {
+      table, th, td {
+        font-size: 12px;
+      }
+      .group-title {
+        font-size: 16px;
+      }
+    }
+    
+    .result-card {
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      padding: 15px;
+      font-size: 15px;
+      line-height: 1.5;
+    }
+
+    @media screen and (max-width: 600px) {
+      .result-card {
+        font-size: 13px;
+        padding: 10px;
+      }
+    }
+    
+    table {
+      width: 95%;
+      border-collapse: separate;
+      border-spacing: 0;
+      margin: 10px auto;
+      font-size: 14px;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+
+    th {
+      background-color: #1e88e5;
+      color: white;
+      padding: 10px;
+      text-align: center;
+    }
+
+    td {
+      padding: 10px;
+      background-color: #f9f9f9;
+      border-top: 1px solid #ddd;
+      text-align: center;
+    }
+
+    tr:nth-child(even) td {
+      background-color: #f1f1f1;
+    }
+
+    .group-section {
+  overflow-x: hidden;
+      margin-top: 30px;
+    }
+
+    .group-title {
+      font-size: 22px;
+      font-weight: bold;
+      margin: 15px 0;
+      text-align: center;
+      color: #333;
+    }
+
+    .top-team-row {
+  background: linear-gradient(to right, #1e88e5, #42a5f5) !important;
+  color: white;
+  font-weight: bold;
+  animation: blink 4s ease-in-out infinite;
+}
+  background-color: #2196f3 !important;
+  color: white;
+  font-weight: bold;
+  animation: blink 4s ease-in-out infinite;
+}
+      background-color: #e3f2fd !important;
+      font-weight: bold;
+    }
+
+    .bottom-team-row {
+  background-color: #fce4ec;
+  font-weight: bold;
+}
+      background-color: #ffebee !important;
+    }
+
+    @media screen and (max-width: 600px) {
+      table, th, td {
+        font-size: 13px;
+        padding: 6px;
+      }
+      .group-title {
+        font-size: 18px;
+      }
+    }
+    
+.group-section {
+  overflow-x: hidden;
+  margin: 15px;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+  overflow: hidden;
+}
+.group-title {
+  padding: 10px;
+  font-weight: bold;
+  font-size: 1.1em;
+  background: linear-gradient(to right, #42a5f5, #7e57c2);
+  color: white;
+  text-align: center;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: auto;
+}
+th, td {
+  padding: 8px;
+  border: 1px solid #ddd;
+  text-align: center;
+  font-size: 13px;
+  word-break: break-word;
+}
+th {
+  background: linear-gradient(to right, #ef5350, #ec407a);
+  color: white;
+}
+tr:nth-child(even) {
+  background-color: #f3e5f5;
+  background-color: #f3e5f5;
+}
+tr:hover {
+  background-color: #e1bee7;
+  background-color: #e1bee7;
+}
+.top-team-row {
+  background: linear-gradient(to right, #1e88e5, #42a5f5) !important;
+  color: white;
+  font-weight: bold;
+  animation: blink 4s ease-in-out infinite;
+}
+  background-color: #2196f3 !important;
+  color: white;
+  font-weight: bold;
+  animation: blink 4s ease-in-out infinite;
+}
+  background-color: #bbdefb;
+  font-weight: bold;
+  animation: blink 4s ease-in-out infinite;
+}
+.bottom-team-row {
+  background-color: #fce4ec;
+  font-weight: bold;
+}
+  background-color: #ffebee;
+  font-weight: bold;
+}
+@keyframes blink {
+  animation-duration: 4s;
+  0% { background-color: #bbdefb; }
+  50% { background-color: #e3f2fd; }
+  100% { background-color: #bbdefb; }
+}
+@media (max-width: 768px) {
+  th, td {
+    font-size: 11px;
+    padding: 6px 4px;
+  }
+  h1 {
+    font-size: 1.4em;
+  }
+}
+
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 20px 0;
+      font-size: 14px;
+      border: 1px solid #ccc;
+      background-color: white;
+    }
+
+    th {
+      background-color: #3949ab;
+      color: white;
+      padding: 10px;
+      border: 1px solid #ccc;
+    }
+
+    td {
+      padding: 8px;
+      border: 1px solid #ccc;
+      text-align: center;
+    }
+
+    tr:nth-child(even) td {
+      background-color: #f3e5f5;
+    }
+
+    .top-team-row {
+  background: linear-gradient(to right, #1e88e5, #42a5f5) !important;
+  color: white;
+  font-weight: bold;
+  animation: blink 4s ease-in-out infinite;
+}
+      background-color: #2196f3 !important;
+      color: white;
+      font-weight: bold;
+      animation: blink 4s ease-in-out infinite;
+    }
+
+    .bottom-team-row {
+      background-color: #fce4ec;
+      font-weight: bold;
+    }
+
+    .group-section {
+  overflow-x: hidden;
+      margin: 30px auto;
+      max-width: 95%;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    .group-title {
+      background: linear-gradient(to right, #42a5f5, #7e57c2);
+      color: white;
+      padding: 10px;
+      font-size: 18px;
+      font-weight: bold;
+    }
+
+    @keyframes blink {
+      0% { background-color: #2196f3; }
+      50% { background-color: #64b5f6; }
+      100% { background-color: #2196f3; }
+    }
+
+    @media screen and (max-width: 600px) {
+      table, th, td {
+        font-size: 12px;
+        padding: 6px;
+      }
+    }
+    
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(to bottom, #f5f7fa, #e0eafc);
+      padding: 10px;
+    }
+
+    .group-section {
+  overflow-x: hidden;
+      margin: 30px auto;
+      max-width: 95%;
+      border-radius: 12px;
+      box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
+      background: white;
+      overflow-x: auto;
+    }
+
+    .group-title {
+      background: linear-gradient(to right, #1e88e5, #7e57c2);
+      color: white;
+      padding: 12px;
+      font-size: 20px;
+      font-weight: bold;
+      text-align: center;
+      border-top-left-radius: 12px;
+      border-top-right-radius: 12px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14px;
+      width: 100%; word-break: break-word;
+    }
+
+    th {
+      background-color: #3949ab;
+      color: white;
+      padding: 10px;
+      text-align: center;
+      font-weight: 600;
+    }
+
+    td {
+      padding: 10px;
+      border-top: 1px solid #e0e0e0;
+      text-align: center;
+      color: #333;
+      background-color: #fafafa;
+    }
+
+    tr:nth-child(even) td {
+      background-color: #f0f0f0;
+    }
+
+    .top-team-row {
+  background: linear-gradient(to right, #1e88e5, #42a5f5) !important;
+  color: white;
+  font-weight: bold;
+  animation: blink 4s ease-in-out infinite;
+}
+      background-color: #1e88e5 !important;
+      color: white;
+      font-weight: bold;
+      animation: blink 4s ease-in-out infinite;
+    }
+
+    .bottom-team-row {
+      background-color: #fce4ec !important;
+      font-weight: bold;
+    }
+
+    @keyframes blink {
+      0% { background-color: #1e88e5; }
+      50% { background-color: #64b5f6; }
+      100% { background-color: #1e88e5; }
+    }
+
+    @media screen and (max-width: 768px) {
+      body {
+        padding: 5px;
+      }
+      .group-title {
+        font-size: 16px;
+      }
+      table, th, td {
+        font-size: 12px;
+        padding: 6px;
+      }
+    }
+    
+    .nrr-cell {
+      white-space: nowrap;
+    }
+    </style>
+</head>
+<body>
+<h1>Virginia Legends Cricket 2025</h1>
+
+<br/>
+
+<div id="resultsBox">No results yet</div>
+
+<div id="tables"></div>
+<script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
+<script>
+    let allResults = [];
+    let resultIndex = 0;
+    let scrollInterval;
+
+    function loadResults() {
+      const input = document.getElementById("resultsFileInput");
+      if (!input.files.length) {
+        alert("Please select a match results CSV file.");
+        return;
+      }
+
+      Papa.parse(input.files[0], {
+        header: true,
+        skipEmptyLines: true,
+        complete: function(results) {
+          const data = results.data;
+          allResults = [];
+
+          data.forEach(row => {
+            const line = `🏏 <strong>Group ${row['Group'] || ''}</strong> –
+              <strong>${row['Team1'] || ''}</strong> ${row['Team1 Runs'] || 0}/${row['Wickets'] ?? '--'} (${(row['Overs'] ? parseFloat(row['Overs']).toFixed(1) : '--')} ov)
+              vs
+              <strong>${row['Team2'] || ''}</strong> ${row['Team2 Runs'] || 0}/${row['Wickets_1'] ?? '--'} (${(row['Overs_1'] ? parseFloat(row['Overs_1']).toFixed(1) : '--')} ov)
+              — Result: <strong>${row['Result'] || 'N/A'}</strong>`;
+            allResults.push(line);
+          });
+
+          resultIndex = 0;
+          displayNextResults();
+          if (scrollInterval) clearInterval(scrollInterval);
+          scrollInterval = setInterval(displayNextResults, 10000);
+        }
+      });
+    }
+
+    function displayNextResults() {
+      const box = document.getElementById("resultsBox");
+      if (allResults.length === 0) {
+        box.innerHTML = "No match data available.";
+        return;
+      }
+
+      let html = "";
+      for (let i = 0; i < 2; i++) {
+        const idx = (resultIndex + i) % allResults.length;
+        html += `<div>${allResults[idx]}</div>`;
+      }
+
+      resultIndex = (resultIndex + 2) % allResults.length;
+      
+    let wrappedHTML = allResults.slice(resultIndex, resultIndex + 2).map(result => `
+      <div class="result-card">
+        ${result}
+      </div>
+    `).join('');
+    box.innerHTML = wrappedHTML;
+    
+    }
+  </script>
+<script>
+  function loadCSV() {
+    const input = document.getElementById('csvFileInput');
+    if (!input.files.length) {
+      alert('Please select a CSV file.');
+      return;
+    }
+
+    const reader = new FileReader();
+    reader.onload = function(e) {
+      const text = e.target.result;
+      const rows = text.trim().split('\n').map(row => row.split(','));
+      const headers = rows[0];
+      const groupIndex = headers.indexOf("Group");
+      const teamIndex = headers.indexOf("Team");
+      const pointsIndex = headers.indexOf("Points");
+      const nrrIndex = headers.indexOf("NRR");
+
+      const visibleHeaders = headers.filter((_, i) => i !== groupIndex);
+      const groupData = {};
+      for (let i = 1; i < rows.length; i++) {
+        const row = rows[i];
+        const group = row[groupIndex];
+        if (!groupData[group]) groupData[group] = [];
+        groupData[group].push(row);
+      }
+
+      const tablesDiv = document.getElementById('tables');
+      tablesDiv.innerHTML = '';
+
+      for (const group in groupData) {
+        const rows = groupData[group];
+        rows.sort((a, b) => {
+          let pointsDiff = parseInt(b[pointsIndex]) - parseInt(a[pointsIndex]);
+          if (pointsDiff !== 0) return pointsDiff;
+          return parseFloat(b[nrrIndex]) - parseFloat(a[nrrIndex]);
+        });
+
+        
+    const topTeamNames = new Set([rows[0][teamIndex], rows[1]?.[teamIndex] || ""]);
+    const medalMap = {};
+    medalMap[rows[0][teamIndex]] = "🥇 ";
+    if (rows.length > 1) {
+      medalMap[rows[1][teamIndex]] = "🥈 ";
+    }
+    
+        const bottomTeamNames = new Set([
+          rows[rows.length - 1]?.[teamIndex],
+          rows[rows.length - 2]?.[teamIndex]
+        ]);
+
+        let html = '<div class="group-section">';
+        html += '<div class="group-title">Group ' + group + '</div>';
+        html += '<table><thead><tr>';
+        visibleHeaders.forEach(h => html += '<th>' + h + '</th>');
+        html += '</tr></thead><tbody>';
+
+        rows.forEach(row => {
+          const team = row[teamIndex];
+          let rowClass = '';
+          if (topTeamNames.has(team)) rowClass = 'top-team-row';
+          else if (bottomTeamNames.has(team)) rowClass = 'bottom-team-row';
+
+          html += `<tr class="${rowClass}">`;
+          row.forEach((cell, i) => {
+            if (i !== groupIndex) {
+              let cellContent = cell;
+              if (headers[i] === "NRR") {
+                cellContent = parseFloat(cell).toFixed(3);
+              }
+              
+    if (headers[i] === "NRR") {
+      html += `<td class='nrr-cell'>${cellContent}</td>`;
+    } else {
+      html += `<td>${cellContent}</td>`;
+    }
+    
+            }
+          });
+          html += '</tr>';
+        });
+
+        html += '</tbody></table></div></div>';
+        tablesDiv.innerHTML += html;
+      }
+    };
+    reader.readAsText(input.files[0]);
+  }
+</script>
+
+<script>
+  function fetchAndLoadCSV() {
+    // Fetch and update match results
+    fetch('match_scores.csv')
+      .then(response => response.text())
+      .then(csvText => {
+        displayResultsFromCSV(csvText);
+      });
+
+    // Fetch and update group tables
+    fetch('sample_tournament_results.csv')
+      .then(response => response.text())
+      .then(csvText => {
+        parseCSV(csvText);
+      });
+  }
+
+  function displayResultsFromCSV(csvText) {
+    Papa.parse(csvText, {
+      header: true,
+      skipEmptyLines: true,
+      complete: function(results) {
+        const data = results.data;
+        allResults = [];
+
+        data.forEach(row => {
+          const line = `🏏 <strong>Group ${row['Group'] || ''}</strong> –
+            <strong>${row['Team1'] || ''}</strong> ${row['Team1 Runs'] || 0}/${row['Wickets'] ?? '--'} (${(row['Overs'] ? parseFloat(row['Overs']).toFixed(1) : '--')} ov)
+            vs
+            <strong>${row['Team2'] || ''}</strong> ${row['Team2 Runs'] || 0}/${row['Wickets_1'] ?? '--'} (${(row['Overs_1'] ? parseFloat(row['Overs_1']).toFixed(1) : '--')} ov)
+            — Result: <strong>${row['Result'] || 'N/A'}</strong>`;
+          allResults.push(line);
+        });
+
+        resultIndex = 0;
+        displayNextResults();
+        if (scrollInterval) clearInterval(scrollInterval);
+        scrollInterval = setInterval(displayNextResults, 10000);
+      }
+    });
+  }
+
+  function parseCSV(csvText) {
+    const lines = csvText.trim().split('
+').map(row => row.split(','));
+    const headers = lines[0];
+    const groupIndex = headers.indexOf("Group");
+    const teamIndex = headers.indexOf("Team");
+    const pointsIndex = headers.indexOf("Points");
+    const nrrIndex = headers.indexOf("NRR");
+
+    const visibleHeaders = headers.filter((_, i) => i !== groupIndex);
+    const groupData = {};
+    for (let i = 1; i < lines.length; i++) {
+      const row = lines[i];
+      const group = row[groupIndex];
+      if (!groupData[group]) groupData[group] = [];
+      groupData[group].push(row);
+    }
+
+    const tablesDiv = document.getElementById('tables');
+    tablesDiv.innerHTML = '';
+
+    for (const group in groupData) {
+      const rows = groupData[group];
+      rows.sort((a, b) => {
+        let pointsDiff = parseInt(b[pointsIndex]) - parseInt(a[pointsIndex]);
+        if (pointsDiff !== 0) return pointsDiff;
+        return parseFloat(b[nrrIndex]) - parseFloat(a[nrrIndex]);
+      });
+
+      const topTeamNames = new Set([rows[0][teamIndex], rows[1]?.[teamIndex] || ""]);
+      const medalMap = {};
+      medalMap[rows[0][teamIndex]] = "🥇 ";
+      if (rows.length > 1) {
+        medalMap[rows[1][teamIndex]] = "🥈 ";
+      }
+
+      const bottomTeamNames = new Set([
+        rows[rows.length - 1]?.[teamIndex],
+        rows[rows.length - 2]?.[teamIndex]
+      ]);
+
+      let html = '<div class="group-section">';
+      html += '<div class="group-title">Group ' + group + '</div>';
+      html += '<table><thead><tr>';
+      visibleHeaders.forEach(h => html += '<th>' + h + '</th>');
+      html += '</tr></thead><tbody>';
+
+      rows.forEach(row => {
+        const team = row[teamIndex];
+        let rowClass = '';
+        if (topTeamNames.has(team)) rowClass = 'top-team-row';
+        else if (bottomTeamNames.has(team)) rowClass = 'bottom-team-row';
+
+        html += `<tr class="${rowClass}">`;
+        row.forEach((cell, i) => {
+          if (i !== groupIndex) {
+            let cellContent = cell;
+            if (headers[i] === "NRR") {
+              cellContent = parseFloat(cell).toFixed(3);
+            }
+
+            if (headers[i] === "NRR") {
+              html += `<td class='nrr-cell'>${cellContent}</td>`;
+            } else {
+              html += `<td>${cellContent}</td>`;
+            }
+          }
+        });
+        html += '</tr>';
+      });
+
+      html += '</tbody></table></div></div>';
+      tablesDiv.innerHTML += html;
+    }
+  }
+
+  window.onload = fetchAndLoadCSV;
+  setInterval(fetchAndLoadCSV, 60000);
+</script>
+
+</body>
+</html>
