@@ -448,6 +448,7 @@ tr:hover {
 
 <br/>
 
+<div id="lastUpdated" style="margin: 10px; font-size: 14px; color: #555;"></div>
 <div id="resultsBox">No results yet</div>
 <section id="upload-section">
 
@@ -630,7 +631,7 @@ tr:hover {
 
 <script>
   function fetchAndLoadCSV() {
-    fetch('https://raw.githubusercontent.com/Wick1366/solid-robot/main/tournament_results.csv')
+    fetch('https://cdn.jsdelivr.net/gh/Wick1366/solid-robot@main/tournament_results.csv')
       .then(response => response.text())
       .then(text => {
         const rows = text.trim().split('
@@ -701,7 +702,7 @@ tr:hover {
         }
       });
 
-    fetch('https://raw.githubusercontent.com/Wick1366/solid-robot/main/match_scores.csv')
+    fetch('https://cdn.jsdelivr.net/gh/Wick1366/solid-robot@main/match_scores.csv')
       .then(response => response.text())
       .then(text => {
         const data = Papa.parse(text, { header: true, skipEmptyLines: true }).data;
@@ -728,6 +729,31 @@ tr:hover {
 
   window.onload = fetchAndLoadCSV;
   setInterval(fetchAndLoadCSV, 60000); // every 60 seconds
+</script>
+
+
+<script>
+  function updateTimestamp() {
+    const now = new Date();
+    const timeString = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+    const dateString = now.toLocaleDateString();
+    const display = document.getElementById("lastUpdated");
+    if (display) {
+      display.innerHTML = `📅 Last updated: <strong>${dateString}</strong> ⏰ <strong>${timeString}</strong>`;
+    }
+  }
+
+  // Call this function inside fetchAndLoadCSV
+  const originalFetchAndLoadCSV = fetchAndLoadCSV;
+  fetchAndLoadCSV = function () {
+    originalFetchAndLoadCSV();
+    updateTimestamp();
+  };
+
+  window.onload = function () {
+    fetchAndLoadCSV();
+    updateTimestamp();
+  };
 </script>
 
 </body>
