@@ -443,12 +443,16 @@ tr:hover {
     </style>
 </head>
 <body>
+
 <h1>Virginia Legends Cricket 2025</h1>
 
 <br/>
 
 <div id="resultsBox">No results yet</div>
+<section id="upload-section">
 
+
+</section>
 <div id="tables"></div>
 <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
 <script>
@@ -511,47 +515,127 @@ tr:hover {
     
     }
   </script>
-
-
-
-
-
 <script>
-  async function fetchResultsFromTxt() {
-    try {
-      const response = await fetch('https://raw.githubusercontent.com/Wick1366/solid-robot/main/match_scores.txt');
-      if (!response.ok) throw new Error("File not found");
-      const text = await response.text();
+  function loadCSV() {
+    const input = document.getElementById('csvFileInput');
+    if (!input.files.length) {
+      alert('Please select a CSV file.');
+      return;
+    }
 
-      const lines = text.trim().split('\n');
-      const box = document.getElementById("resultsBox");
-      let html = "";
+    const reader = new FileReader();
+    reader.onload = function(e) {
+      const text = e.target.result;
+      const rows = text.trim().split('\n').map(row => row.split(','));
+      const headers = rows[0];
+      const groupIndex = headers.indexOf("Group");
+      const teamIndex = headers.indexOf("Team");
+      const pointsIndex = headers.indexOf("Points");
+      const nrrIndex = headers.indexOf("NRR");
 
-      lines.forEach((line) => {
-        html += `<div class="result-card">🏏 ${line}</div>`;
+      const visibleHeaders = headers.filter((_, i) => i !== groupIndex);
+      const groupData = {};
+      for (let i = 1; i < rows.length; i++) {
+        const row = rows[i];
+        const group = row[groupIndex];
+        if (!groupData[group]) groupData[group] = [];
+        groupData[group].push(row);
+      }
+
+      const tablesDiv = document.getElementById('tables');
+      tablesDiv.innerHTML = '';
+
+      for (const group in groupData) {
+        const rows = groupData[group];
+        rows.sort((a, b) => {
+          let pointsDiff = parseInt(b[pointsIndex]) - parseInt(a[pointsIndex]);
+          if (pointsDiff !== 0) return pointsDiff;
+          return parseFloat(b[nrrIndex]) - parseFloat(a[nrrIndex]);
+        });
+
+        
+    const topTeamNames = new Set([rows[0][teamIndex], rows[1]?.[teamIndex] || ""]);
+    const medalMap = {};
+    medalMap[rows[0][teamIndex]] = "🥇 ";
+    if (rows.length > 1) {
+      medalMap[rows[1][teamIndex]] = "🥈 ";
+    }
+    
+        const bottomTeamNames = new Set([
+          rows[rows.length - 1]?.[teamIndex],
+          rows[rows.length - 2]?.[teamIndex]
+        ]);
+
+        let html = '<div class="group-section">';
+        html += '<div class="group-title">Group ' + group + '</div>';
+        html += '<table><thead><tr>';
+        visibleHeaders.forEach(h => html += '<th>' + h + '</th>');
+        html += '</tr></thead><tbody>';
+
+        rows.forEach(row => {
+          const team = row[teamIndex];
+          let rowClass = '';
+          if (topTeamNames.has(team)) rowClass = 'top-team-row';
+          else if (bottomTeamNames.has(team)) rowClass = 'bottom-team-row';
+
+          html += `<tr class="${rowClass}">`;
+          row.forEach((cell, i) => {
+            if (i !== groupIndex) {
+              let cellContent = cell;
+              if (headers[i] === "NRR") {
+                cellContent = parseFloat(cell).toFixed(3);
+              }
+              
+    if (headers[i] === "NRR") {
+      html += `<td class='nrr-cell'>${cellContent}</td>`;
+    } else {
+      html += `<td>${cellContent}</td>`;
+    }
+    
+            }
+          });
+          html += '</tr>';
+        });
+
+        html += '</tbody></table></div></div>';
+        tablesDiv.innerHTML += html;
+      }
+    };
+    reader.readAsText(input.files[0]);
+  }
+</script>
+<script>
+  function fetchAndLoadCSV() {
+    fetch('sample_tournament_results.csv')
+      .then(response => response.text())
+      .then(csv => {
+        document.getElementById('csvFileInput').value = "";
+        parseCSV(csv);
       });
 
-      box.innerHTML = html;
-    } catch (err) {
-      document.getElementById("resultsBox").innerHTML = "⚠️ Could not load results.";
-      console.error(err);
-    }
+    fetch('match_scores.csv')
+      .then(response => response.text())
+      .then(csv => {
+        displayResultsFromCSV(csv);
+      });
   }
 
-  window.onload = () => {
-    fetchResultsFromTxt();
-    setInterval(fetchResultsFromTxt, 60000); // refresh every 60 seconds
-  };
+  setInterval(fetchAndLoadCSV, 60000); // refresh every 60 seconds
+  window.onload = fetchAndLoadCSV;
 </script>
 
 
+
+
+
 <script>
-  function fetchAndLoadGroupTables() {
+  function fetchAndLoadCSV() {
     fetch('https://raw.githubusercontent.com/Wick1366/solid-robot/main/tournament_results.csv')
       .then(response => response.text())
-      .then(csvText => {
-        const lines = csvText.trim().split('\n').map(row => row.split(','));
-        const headers = lines[0];
+      .then(text => {
+        const rows = text.trim().split('
+').map(row => row.split(','));
+        const headers = rows[0];
         const groupIndex = headers.indexOf("Group");
         const teamIndex = headers.indexOf("Team");
         const pointsIndex = headers.indexOf("Points");
@@ -559,8 +643,8 @@ tr:hover {
 
         const visibleHeaders = headers.filter((_, i) => i !== groupIndex);
         const groupData = {};
-        for (let i = 1; i < lines.length; i++) {
-          const row = lines[i];
+        for (let i = 1; i < rows.length; i++) {
+          const row = rows[i];
           const group = row[groupIndex];
           if (!groupData[group]) groupData[group] = [];
           groupData[group].push(row);
@@ -601,9 +685,11 @@ tr:hover {
                 let cellContent = cell;
                 if (headers[i] === "NRR") {
                   cellContent = parseFloat(cell).toFixed(3);
+                }
+                if (headers[i] === "NRR") {
                   html += `<td class='nrr-cell'>${cellContent}</td>`;
                 } else {
-                  html += `<td>${cell}</td>`;
+                  html += `<td>${cellContent}</td>`;
                 }
               }
             });
@@ -614,15 +700,34 @@ tr:hover {
           tablesDiv.innerHTML += html;
         }
       });
+
+    fetch('https://raw.githubusercontent.com/Wick1366/solid-robot/main/match_scores.csv')
+      .then(response => response.text())
+      .then(text => {
+        const data = Papa.parse(text, { header: true, skipEmptyLines: true }).data;
+        const box = document.getElementById("resultsBox");
+
+        if (!data.length) {
+          box.innerHTML = "No match data available.";
+          return;
+        }
+
+        const results = data.map(row => `
+          <div class="result-card">
+            🏏 <strong>Group ${row['Group'] || ''}</strong> –
+            <strong>${row['Team1'] || ''}</strong> ${row['Team1 Runs'] || 0}/${row['Wickets'] ?? '--'} (${(row['Overs'] ? parseFloat(row['Overs']).toFixed(1) : '--')} ov)
+            vs
+            <strong>${row['Team2'] || ''}</strong> ${row['Team2 Runs'] || 0}/${row['Wickets_1'] ?? '--'} (${(row['Overs_1'] ? parseFloat(row['Overs_1']).toFixed(1) : '--')} ov)
+            — Result: <strong>${row['Result'] || 'N/A'}</strong>
+          </div>
+        `).join('');
+
+        box.innerHTML = results;
+      });
   }
 
-  // Add this to the onload function
-  window.onload = () => {
-    fetchResultsFromTxt();
-    fetchAndLoadGroupTables();
-    setInterval(fetchResultsFromTxt, 60000);
-    setInterval(fetchAndLoadGroupTables, 60000);
-  };
+  window.onload = fetchAndLoadCSV;
+  setInterval(fetchAndLoadCSV, 60000); // every 60 seconds
 </script>
 
 </body>
