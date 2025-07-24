@@ -605,34 +605,52 @@ tr:hover {
     reader.readAsText(input.files[0]);
   }
 </script>
-<script>
-  function fetchAndLoadCSV() {
-    fetch('sample_tournament_results.csv')
-      .then(response => response.text())
-      .then(csv => {
-        document.getElementById('csvFileInput').value = "";
-        parseCSV(csv);
-      });
 
-    fetch('match_scores.csv')
-      .then(response => response.text())
-      .then(csv => {
-        displayResultsFromCSV(csv);
-      });
+
+
+
+
+
+
+
+
+<script>
+  function updateTimestamp() {
+    const now = new Date();
+    const timeString = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+    const dateString = now.toLocaleDateString();
+    const display = document.getElementById("lastUpdated");
+    if (display) {
+      display.innerHTML = `📅 Last updated: <strong>${dateString}</strong> ⏰ <strong>${timeString}</strong>`;
+    }
   }
 
-  setInterval(fetchAndLoadCSV, 60000); // refresh every 60 seconds
-  window.onload = fetchAndLoadCSV;
+  // Call this function inside fetchAndLoadCSV
+  const originalFetchAndLoadCSV = fetchAndLoadCSV;
+  fetchAndLoadCSV = function () {
+    originalFetchAndLoadCSV();
+    updateTimestamp();
+  };
+
+  window.onload = function () {
+    fetchAndLoadCSV();
+    updateTimestamp();
+  };
 </script>
 
 
-
-
-
 <script>
+  function showErrorMessage(msg) {
+    const box = document.getElementById("resultsBox");
+    box.innerHTML = `<div style="color: red; font-weight: bold; margin: 20px;">❌ ${msg}</div>`;
+  }
+
   function fetchAndLoadCSV() {
     fetch('https://cdn.jsdelivr.net/gh/Wick1366/solid-robot@main/tournament_results.csv')
-      .then(response => response.text())
+      .then(response => {
+        if (!response.ok) throw new Error("Tournament CSV not found");
+        return response.text();
+      })
       .then(text => {
         const rows = text.trim().split('
 ').map(row => row.split(','));
@@ -700,16 +718,20 @@ tr:hover {
           html += '</tbody></table></div></div>';
           tablesDiv.innerHTML += html;
         }
-      });
+      })
+      .catch(err => showErrorMessage("Failed to load tournament_results.csv"));
 
     fetch('https://cdn.jsdelivr.net/gh/Wick1366/solid-robot@main/match_scores.csv')
-      .then(response => response.text())
+      .then(response => {
+        if (!response.ok) throw new Error("Match scores CSV not found");
+        return response.text();
+      })
       .then(text => {
         const data = Papa.parse(text, { header: true, skipEmptyLines: true }).data;
         const box = document.getElementById("resultsBox");
 
         if (!data.length) {
-          box.innerHTML = "No match data available.";
+          showErrorMessage("No match data available from match_scores.csv");
           return;
         }
 
@@ -724,36 +746,12 @@ tr:hover {
         `).join('');
 
         box.innerHTML = results;
-      });
+      })
+      .catch(err => showErrorMessage("Failed to load match_scores.csv"));
   }
 
   window.onload = fetchAndLoadCSV;
   setInterval(fetchAndLoadCSV, 60000); // every 60 seconds
-</script>
-
-
-<script>
-  function updateTimestamp() {
-    const now = new Date();
-    const timeString = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' });
-    const dateString = now.toLocaleDateString();
-    const display = document.getElementById("lastUpdated");
-    if (display) {
-      display.innerHTML = `📅 Last updated: <strong>${dateString}</strong> ⏰ <strong>${timeString}</strong>`;
-    }
-  }
-
-  // Call this function inside fetchAndLoadCSV
-  const originalFetchAndLoadCSV = fetchAndLoadCSV;
-  fetchAndLoadCSV = function () {
-    originalFetchAndLoadCSV();
-    updateTimestamp();
-  };
-
-  window.onload = function () {
-    fetchAndLoadCSV();
-    updateTimestamp();
-  };
 </script>
 
 </body>
