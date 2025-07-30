@@ -1,6 +1,7 @@
 Group,Team1,Team1 Runs,Wickets,Overs,Team2,Team2 Runs,Wickets,Overs,Result
-A,Legeds A,52,2,6.0,Team A2,36,5,6.0,Legeds A won
-A,Legeds A,65,2,6.0,Team A4,52,4,6.0,Legeds A won
-D,Titans 2,69,1,6.0,Team D4,36,5,6.0,Titans 2 won
-B,Legeds B,69,3,6.0,Team B4,58,4,6.0,Legeds B won
-C,Titans 1,52,4,4.2,Team C2,50,4,6.0,Titans 1 won
+A,Team A1,35,2,6.0,Team A3,46,3,6.0,Team A3 won
+A,Team A1,76,4,6.0,Team A4,78,1,5.2,Team A4 won
+A,Team A2,35,0,3.0,Team A3,34,4,6.0,Team A2 won
+A,Team A2,45,1,6.0,Team A4,48,2,4.5,Team A4 won
+A,Team A1,56,1,6.0,Team A2,48,4,6.0,Team A1 won
+A,Team A3,38,5,6.0,Team A4,32,4,6.0,Team A3 won
