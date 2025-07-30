@@ -448,17 +448,12 @@ tr:hover {
 
 <br/>
 
-<div id="lastUpdated" style="margin: 10px; font-size: 14px; color: #555;"></div>
-
-<div id="resultsWrapper" style="margin-top: 30px;">
-  <h2 style="font-size: 20px; color: #333; margin-bottom: 5px;">📢 Latest Results</h2>
-  <div id="lastUpdated" style="font-size: 14px; color: #777; margin-bottom: 10px;"></div>
-  <div id="resultsBox" style="margin: 10px;"></div>
-</div>
+<div id="resultsBox">No results yet</div>
+<section id="upload-section">
 
 
+</section>
 <div id="tables"></div>
-<div id="resultsWrapperContainer"></div>
 <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
 <script>
     let allResults = [];
@@ -491,7 +486,7 @@ tr:hover {
           resultIndex = 0;
           displayNextResults();
           if (scrollInterval) clearInterval(scrollInterval);
-          scrollInterval = setInterval(displayNextResults, 15000);
+          scrollInterval = setInterval(displayNextResults, 10000);
         }
       });
     }
@@ -609,47 +604,37 @@ tr:hover {
     reader.readAsText(input.files[0]);
   }
 </script>
-
-
-
-
-
-
-
-
-
 <script>
-  function updateTimestamp() {
-    const now = new Date();
-    const timeString = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' });
-    const dateString = now.toLocaleDateString();
-    const display = document.getElementById("lastUpdated");
-    if (display) {
-      display.innerHTML = `📅 Last updated: <strong>${dateString}</strong> ⏰ <strong>${timeString}</strong>`;
-    }
+  function fetchAndLoadCSV() {
+    fetch('sample_tournament_results.csv')
+      .then(response => response.text())
+      .then(csv => {
+        document.getElementById('csvFileInput').value = "";
+        parseCSV(csv);
+      });
+
+    fetch('match_scores.csv')
+      .then(response => response.text())
+      .then(csv => {
+        displayResultsFromCSV(csv);
+      });
   }
 
-  // Call this function inside fetchAndLoadCSV
-  
-
-  window.onload = function () { fetchAndLoadCSV(); };
+  setInterval(fetchAndLoadCSV, 60000); // refresh every 60 seconds
+  window.onload = fetchAndLoadCSV;
 </script>
 
 
-<script>
-  function showErrorMessage(msg) {
-    const box = document.getElementById("resultsBox");
-    box.innerHTML = `<div style="color: red; font-weight: bold; margin: 20px;">❌ ${msg}</div>`;
-  }
 
+
+
+<script>
   function fetchAndLoadCSV() {
-    fetch('https://cdn.jsdelivr.net/gh/Wick1366/solid-robot@main/tournament_results.csv')
-      .then(response => {
-        if (!response.ok) throw new Error("Tournament CSV not found");
-        return response.text();
-      })
+    fetch('https://raw.githubusercontent.com/Wick1366/solid-robot/main/tournament_results.csv')
+      .then(response => response.text())
       .then(text => {
-        const rows = text.trim().split('\n').map(row => row.split(','));
+        const rows = text.trim().split('
+').map(row => row.split(','));
         const headers = rows[0];
         const groupIndex = headers.indexOf("Group");
         const teamIndex = headers.indexOf("Team");
@@ -714,20 +699,16 @@ tr:hover {
           html += '</tbody></table></div></div>';
           tablesDiv.innerHTML += html;
         }
-      })
-      .catch(err => showErrorMessage("Failed to load tournament_results.csv"));
+      });
 
-    fetch('https://cdn.jsdelivr.net/gh/Wick1366/solid-robot@main/match_scores.csv')
-      .then(response => {
-        if (!response.ok) throw new Error("Match scores CSV not found");
-        return response.text();
-      })
+    fetch('https://raw.githubusercontent.com/Wick1366/solid-robot/main/match_scores.csv')
+      .then(response => response.text())
       .then(text => {
         const data = Papa.parse(text, { header: true, skipEmptyLines: true }).data;
         const box = document.getElementById("resultsBox");
 
         if (!data.length) {
-          showErrorMessage("No match data available from match_scores.csv");
+          box.innerHTML = "No match data available.";
           return;
         }
 
@@ -742,24 +723,12 @@ tr:hover {
         `).join('');
 
         box.innerHTML = results;
-      })
-      .catch(err => showErrorMessage("Failed to load match_scores.csv"));
+      });
   }
 
   window.onload = fetchAndLoadCSV;
-  updateTimestamp();
-  setInterval(fetchAndLoadCSV, 60000);
-  updateTimestamp(); // every 60 seconds
+  setInterval(fetchAndLoadCSV, 60000); // every 60 seconds
 </script>
 
-<script>
-window.addEventListener('DOMContentLoaded', () => {
-  const wrapper = document.getElementById("resultsWrapper");
-  const container = document.getElementById("resultsWrapperContainer");
-  if (wrapper && container) {
-    container.appendChild(wrapper);
-  }
-});
-</script>
 </body>
 </html>
