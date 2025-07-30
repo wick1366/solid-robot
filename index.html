@@ -603,30 +603,7 @@ tr:hover {
     reader.readAsText(input.files[0]);
   }
 </script>
-<script>
-  function fetchAndLoadCSV() {
-    fetch('sample_tournament_results.csv')
-      .then(response => response.text())
-      .then(csv => {
-        document.getElementById('csvFileInput').value = "";
-        parseCSV(csv);
-      });
-
-    fetch('match_scores.csv')
-      .then(response => response.text())
-      .then(csv => {
-        displayResultsFromCSV(csv);
-      });
-  }
-
-  setInterval(fetchAndLoadCSV, 60000); // refresh every 60 seconds
-  window.onload = fetchAndLoadCSV;
-</script>
-
-
-
-
-
+    
 <script>
   function fetchAndLoadCSV() {
     fetch('https://raw.githubusercontent.com/Wick1366/solid-robot/main/tournament_results.csv')
