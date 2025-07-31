@@ -1,0 +1,25 @@
+Group,Team1,Team1 Runs,Wickets,Overs,Team2,Team2 Runs,Wickets_1,Overs_1,Result
+A,Team A1,166,2,18.6,Team A2,131,7,17.3,Team A1 won
+A,Team A1,150,7,18.9,Team A3,170,3,18.6,Team A3 won
+A,Team A1,137,3,19.3,Team A4,156,5,18.1,Team A4 won
+A,Team A2,112,4,18.5,Team A3,101,5,19.2,Team A2 won
+A,Team A2,162,3,15.7,Team A4,166,2,16.5,Team A4 won
+A,Team A3,180,9,16.9,Team A4,141,9,17.7,Team A3 won
+B,Team B1,173,9,19.0,Team B2,140,8,19.9,Team B1 won
+B,Team B1,124,5,17.8,Team B3,132,8,15.4,Team B3 won
+B,Team B1,115,9,15.1,Team B4,153,9,17.8,Team B4 won
+B,Team B2,105,6,16.8,Team B3,121,7,18.2,Team B3 won
+B,Team B2,137,3,19.0,Team B4,96,7,16.6,Team B2 won
+B,Team B3,150,4,19.6,Team B4,118,7,18.0,Team B3 won
+C,Team C1,117,6,16.9,Team C2,131,9,19.4,Team C2 won
+C,Team C1,160,5,15.8,Team C3,127,7,19.2,Team C1 won
+C,Team C1,131,5,16.8,Team C4,157,9,16.7,Team C4 won
+C,Team C2,132,5,18.4,Team C3,157,10,15.4,Team C3 won
+C,Team C2,176,7,18.6,Team C4,93,2,17.4,Team C2 won
+C,Team C3,173,5,17.9,Team C4,147,6,19.9,Team C3 won
+D,Team D1,146,6,15.8,Team D2,95,7,18.1,Team D1 won
+D,Team D1,160,5,18.1,Team D3,93,5,15.1,Team D1 won
+D,Team D1,149,7,15.9,Team D4,160,7,17.0,Team D4 won
+D,Team D2,135,2,19.5,Team D3,151,10,19.3,Team D3 won
+D,Team D2,150,2,19.9,Team D4,158,9,17.4,Team D4 won
+D,Team D3,141,8,19.9,Team D4,149,3,16.4,Team D4 won
