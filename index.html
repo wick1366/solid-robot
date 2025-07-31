@@ -95,30 +95,6 @@
       background-color: #e1bee7;
     }
     
-    .qualified-row {
-      background-color: #2196f3 !important;
-      color: white !important;
-      font-weight: bold;
-      animation: blink 4s ease-in-out infinite;
-    }
-    
-    .qualified-row td {
-      background-color: #2196f3 !important;
-      color: white !important;
-      font-weight: bold;
-    }
-    
-    .qualified-row:hover td {
-      background-color: #1976d2 !important;
-      color: white !important;
-    }
-    
-    @keyframes blink {
-      0% { background-color: #2196f3; }
-      50% { background-color: #64b5f6; }
-      100% { background-color: #2196f3; }
-    }
-    
     .nrr-cell {
       white-space: nowrap;
     }
@@ -128,26 +104,29 @@
       max-width: 95%;
       border-radius: 15px;
       box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
-      background: white;
+      background: linear-gradient(145deg, #ffffff 0%, #f8f9fa 100%);
       overflow: hidden;
       transition: transform 0.2s ease;
+      border: 1px solid #e0e0e0;
     }
     
     .knockout-section:hover {
       transform: translateY(-3px);
+      box-shadow: 0 12px 35px rgba(0, 0, 0, 0.2);
     }
     
     .knockout-title {
-      background: linear-gradient(135deg, #ff6f00 0%, #ff8f00 50%, #ffa000 100%);
-      color: white;
-      padding: 15px;
-      font-size: 22px;
-      font-weight: bold;
+      background: linear-gradient(135deg, #1a1a1a 0%, #2c2c2c 50%, #1f1f1f 100%);
+      color: #ffffff;
+      padding: 20px;
+      font-size: 24px;
+      font-weight: 700;
       text-align: center;
       text-transform: uppercase;
-      letter-spacing: 1px;
+      letter-spacing: 2px;
       position: relative;
       overflow: hidden;
+      border-bottom: 3px solid #ffd700;
     }
     
     .knockout-title::before {
@@ -157,124 +136,309 @@
       left: -100%;
       width: 100%;
       height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-      animation: shine 3s infinite;
+      background: linear-gradient(90deg, transparent, rgba(255,215,0,0.3), transparent);
+      animation: shine 4s infinite;
+    }
+    
+    .knockout-section table {
+      background: linear-gradient(145deg, #ffffff 0%, #f8f9fa 100%);
+    }
+    
+    .knockout-section th {
+      background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+      color: #ffffff;
+      padding: 15px 12px;
+      text-align: center;
+      font-weight: 700;
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      border: none;
+      border-right: 1px solid rgba(255,255,255,0.1);
+    }
+    
+    .knockout-section th:last-child {
+      border-right: none;
+    }
+    
+    .qualified-row {
+      background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%) !important;
+      color: #2c3e50 !important;
+      font-weight: 600;
+      animation: none;
+      border-left: 4px solid #ffd700;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    }
+    
+    .qualified-row td {
+      background: transparent !important;
+      color: #2c3e50 !important;
+      font-weight: 600;
+      padding: 15px 12px;
+      border-right: 1px solid rgba(0,0,0,0.05);
+      font-size: 14px;
+    }
+    
+    .qualified-row:hover {
+      background: linear-gradient(135deg, #e3f2fd 0%, #f1f8e9 100%) !important;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 15px rgba(0,0,0,0.12);
+    }
+    
+    .qualified-row:hover td {
+      background: transparent !important;
+      color: #1565c0 !important;
+    }
+    
+    .qualified-row td:first-child {
+      font-weight: 800;
+      font-size: 16px;
+      color: #ff6f00 !important;
+    }
+    
+    .qualified-row td:nth-child(2) {
+      font-weight: 700;
+      font-size: 15px;
+      color: #1565c0 !important;
+    }
+    
+    @keyframes shine {
+      0% { left: -100%; }
+      100% { left: 100%; }
     }
     
     .playoff-section {
       margin: 30px auto;
       max-width: 95%;
-      border-radius: 15px;
-      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
-      background: linear-gradient(135deg, #ffffff 0%, #f8f9ff 100%);
-      padding: 25px;
-      transition: transform 0.2s ease;
-    }
-    
-    .playoff-section:hover {
-      transform: translateY(-3px);
-    }
-    
-    .playoff-title {
-      background: linear-gradient(135deg, #d32f2f 0%, #f44336 50%, #e53935 100%);
-      color: white;
-      padding: 15px;
-      font-size: 22px;
-      font-weight: bold;
-      text-align: center;  
-      border-radius: 10px;
-      margin-bottom: 25px;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-    }
-    
-    .bracket-round {
-      margin-bottom: 35px;
-    }
-    
-    .bracket-round h3 {
-      color: #1a1a1a;
-      font-size: 20px;
-      margin-bottom: 20px;
-      text-align: center;
-      padding: 12px;
-      background: linear-gradient(135deg, #f5f5f5 0%, #e0e0e0 100%);
-      border-radius: 8px;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      font-weight: bold;
-      border: 2px solid #bdbdbd;
-    }
-    
-    .bracket-matches {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 20px;
-    }
-    
-    .bracket-match {
-      border-radius: 12px;
-      padding: 15px;
-      text-align: center;
-      font-weight: bold;
-      font-size: 16px;
-      transition: all 0.3s ease;
+      border-radius: 20px;
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+      background: linear-gradient(145deg, #0a0e27 0%, #1a1f3a 50%, #2a2d47 100%);
+      padding: 30px;
+      transition: transform 0.3s ease;
       position: relative;
       overflow: hidden;
     }
     
-    .bracket-match::before {
+    .playoff-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, #ff6f00, #ffc107, #ff5722, #e91e63, #9c27b0, #3f51b5, #2196f3);
+      animation: rainbow 3s linear infinite;
+    }
+    
+    @keyframes rainbow {
+      0% { background-position: 0% 50%; }
+      100% { background-position: 100% 50%; }
+    }
+    
+    .playoff-section:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25);
+    }
+    
+    .playoff-title {
+      background: linear-gradient(135deg, #ff6f00 0%, #ffc107 50%, #ff8f00 100%);
+      color: white;
+      padding: 20px;
+      font-size: 28px;
+      font-weight: 900;
+      text-align: center;  
+      border-radius: 15px;
+      margin-bottom: 35px;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      box-shadow: 0 8px 25px rgba(255, 111, 0, 0.3);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .playoff-title::before {
+      content: '🏆';
+      position: absolute;
+      left: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 32px;
+      animation: bounce 2s infinite;
+    }
+    
+    .playoff-title::after {
+      content: '🏆';
+      position: absolute;
+      right: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 32px;
+      animation: bounce 2s infinite 0.5s;
+    }
+    
+    @keyframes bounce {
+      0%, 20%, 50%, 80%, 100% { transform: translateY(-50%) scale(1); }
+      40% { transform: translateY(-60%) scale(1.1); }
+      60% { transform: translateY(-55%) scale(1.05); }
+    }
+    
+    .bracket-round {
+      margin-bottom: 40px;
+      position: relative;
+    }
+    
+    .bracket-round::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60px;
+      height: 3px;
+      background: linear-gradient(90deg, #ff6f00, #ffc107);
+      border-radius: 2px;
+    }
+    
+    .bracket-round h3 {
+      color: #ffffff;
+      font-size: 24px;
+      margin-bottom: 25px;
+      text-align: center;
+      padding: 18px 25px;
+      background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+      border-radius: 12px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-weight: 800;
+      border: 2px solid #ffc107;
+      box-shadow: 0 6px 20px rgba(30, 60, 114, 0.3);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .bracket-round h3::before {
       content: '';
       position: absolute;
       top: 0;
       left: -100%;
       width: 100%;
       height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-      transition: left 0.5s ease;
+      background: linear-gradient(90deg, transparent, rgba(255,193,7,0.3), transparent);
+      animation: shine 3s infinite;
+    }
+    
+    .bracket-matches {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 25px;
+      perspective: 1000px;
+    }
+    
+    .bracket-match {
+      border-radius: 15px;
+      padding: 20px;
+      text-align: center;
+      font-weight: 700;
+      font-size: 16px;
+      transition: all 0.4s ease;
+      position: relative;
+      overflow: hidden;
+      transform-style: preserve-3d;
+      border: 2px solid transparent;
+    }
+    
+    .bracket-match::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: inherit;
+      border-radius: 15px;
+      filter: blur(20px);
+      opacity: 0.7;
+      z-index: -1;
+      transform: scale(1.05);
+      transition: all 0.4s ease;
+    }
+    
+    .bracket-match:hover {
+      transform: translateY(-8px) rotateX(5deg);
+      z-index: 10;
     }
     
     .bracket-match:hover::before {
-      left: 100%;
+      filter: blur(25px);
+      opacity: 0.9;
+      transform: scale(1.1);
     }
     
     .bracket-match.quarterfinal {
-      background: linear-gradient(135deg, #27ae60 0%, #2ecc71 100%);
+      background: linear-gradient(135deg, #1b5e20 0%, #2e7d32 50%, #4caf50 100%);
       color: white;
-      border: 3px solid #1e8449;
-      box-shadow: 0 4px 15px rgba(39, 174, 96, 0.3);
+      border: 2px solid #66bb6a;
+      box-shadow: 0 6px 20px rgba(76, 175, 80, 0.4);
     }
     
     .bracket-match.quarterfinal:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 8px 25px rgba(39, 174, 96, 0.4);
+      box-shadow: 0 15px 35px rgba(76, 175, 80, 0.6);
+      border-color: #81c784;
     }
     
     .bracket-match.semifinal {
-      background: linear-gradient(135deg, #f39c12 0%, #e67e22 100%);
+      background: linear-gradient(135deg, #e65100 0%, #f57c00 50%, #ff9800 100%);
       color: white;
-      border: 3px solid #d68910;
-      box-shadow: 0 4px 15px rgba(243, 156, 18, 0.3);
+      border: 2px solid #ffb74d;
+      box-shadow: 0 6px 20px rgba(255, 152, 0, 0.4);
     }
     
     .bracket-match.semifinal:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 8px 25px rgba(243, 156, 18, 0.4);
+      box-shadow: 0 15px 35px rgba(255, 152, 0, 0.6);
+      border-color: #ffcc02;
     }
     
     .bracket-match.final {
-      background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+      background: linear-gradient(135deg, #b71c1c 0%, #d32f2f 50%, #f44336 100%);
       color: white;
-      border: 3px solid #a93226;
-      box-shadow: 0 4px 15px rgba(231, 76, 60, 0.3);
-      font-size: 18px;
-      padding: 20px;
+      border: 3px solid #ef5350;
+      box-shadow: 0 8px 25px rgba(244, 67, 54, 0.5);
+      font-size: 20px;
+      padding: 25px;
+      position: relative;
+    }
+    
+    .bracket-match.final::after {
+      content: '👑';
+      position: absolute;
+      top: -10px;
+      right: -10px;
+      font-size: 24px;
+      animation: rotate 3s linear infinite;
+    }
+    
+    @keyframes rotate {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
     }
     
     .bracket-match.final:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 8px 25px rgba(231, 76, 60, 0.4);
+      box-shadow: 0 15px 40px rgba(244, 67, 54, 0.7);
+      border-color: #ff7043;
+    }
+    
+    .match-vs {
+      font-size: 14px;
+      opacity: 0.8;
+      margin: 8px 0;
+      text-transform: lowercase;
+      font-weight: 400;
+    }
+    
+    .team-name {
+      font-size: 18px;
+      font-weight: 800;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.3);
     }
     
     @media screen and (max-width: 768px) {
@@ -623,7 +787,7 @@
     let html = '<div class="knockout-section">';
     html += '<div class="knockout-title">🏆 Knockout Stage Qualifiers</div>';
     html += '<table><thead><tr>';
-    html += '<th>Rank</th><th>Team</th><th>Group</th><th>Points</th><th>NRR</th><th>Played</th><th>Won</th><th>Lost</th>';
+    html += '<th>Rank</th><th>Team</th><th>Group</th><th>Played</th><th>Won</th><th>Lost</th><th>Points</th><th>NRR</th>';
     html += '</tr></thead><tbody>';
     
     teams.forEach((team, index) => {
@@ -631,17 +795,17 @@
       html += `<td><strong>${index + 1}</strong></td>`;
       html += `<td><strong>${team[teamIndex]}</strong></td>`;
       html += `<td>${team.group}</td>`;
-      html += `<td>${team[pointsIndex]}</td>`;
-      html += `<td class="nrr-cell">${parseFloat(team[nrrIndex]).toFixed(3)}</td>`;
       
-      // Add other stats if they exist in headers
-      const playedIndex = headers.indexOf("Played");
-      const wonIndex = headers.indexOf("Won");
-      const lostIndex = headers.indexOf("Lost");
+      // Find the correct column indices - trying common variations
+      const playedIndex = headers.findIndex(h => h.toLowerCase().includes('played') || h.toLowerCase().includes('matches') || h.toLowerCase().includes('match'));
+      const wonIndex = headers.findIndex(h => h.toLowerCase().includes('won') || h.toLowerCase().includes('win'));
+      const lostIndex = headers.findIndex(h => h.toLowerCase().includes('lost') || h.toLowerCase().includes('loss'));
       
       html += `<td>${playedIndex >= 0 ? team[playedIndex] : 'N/A'}</td>`;
       html += `<td>${wonIndex >= 0 ? team[wonIndex] : 'N/A'}</td>`;
       html += `<td>${lostIndex >= 0 ? team[lostIndex] : 'N/A'}</td>`;
+      html += `<td>${team[pointsIndex]}</td>`;
+      html += `<td class="nrr-cell">${parseFloat(team[nrrIndex]).toFixed(3)}</td>`;
       html += '</tr>';
     });
     
@@ -653,25 +817,37 @@
     const bracketsDiv = document.getElementById('playoffBrackets');
     
     let html = '<div class="playoff-section">';
-    html += '<div class="playoff-title">🏟️ Playoff Brackets</div>';
+    html += '<div class="playoff-title">Playoff Brackets</div>';
     
     // Quarter Finals
     html += '<div class="bracket-round">';
-    html += '<h3>Quarter Finals</h3>';
+    html += '<h3>⚡ Quarter Finals</h3>';
     html += '<div class="bracket-matches">';
     
     if (teams.length >= 8) {
       html += `<div class="bracket-match quarterfinal">
-        <strong>QF1:</strong> ${teams[0][teamIndex]} vs ${teams[7][teamIndex]}
+        <div class="team-name">${teams[0][teamIndex]}</div>
+        <div class="match-vs">vs</div>
+        <div class="team-name">${teams[7][teamIndex]}</div>
+        <div style="margin-top: 10px; font-size: 12px; opacity: 0.8;">QF1</div>
       </div>`;
       html += `<div class="bracket-match quarterfinal">
-        <strong>QF2:</strong> ${teams[1][teamIndex]} vs ${teams[6][teamIndex]}
+        <div class="team-name">${teams[1][teamIndex]}</div>
+        <div class="match-vs">vs</div>
+        <div class="team-name">${teams[6][teamIndex]}</div>
+        <div style="margin-top: 10px; font-size: 12px; opacity: 0.8;">QF2</div>
       </div>`;
       html += `<div class="bracket-match quarterfinal">
-        <strong>QF3:</strong> ${teams[2][teamIndex]} vs ${teams[5][teamIndex]}
+        <div class="team-name">${teams[2][teamIndex]}</div>
+        <div class="match-vs">vs</div>
+        <div class="team-name">${teams[5][teamIndex]}</div>
+        <div style="margin-top: 10px; font-size: 12px; opacity: 0.8;">QF3</div>
       </div>`;
       html += `<div class="bracket-match quarterfinal">
-        <strong>QF4:</strong> ${teams[3][teamIndex]} vs ${teams[4][teamIndex]}
+        <div class="team-name">${teams[3][teamIndex]}</div>
+        <div class="match-vs">vs</div>
+        <div class="team-name">${teams[4][teamIndex]}</div>
+        <div style="margin-top: 10px; font-size: 12px; opacity: 0.8;">QF4</div>
       </div>`;
     }
     
@@ -679,22 +855,31 @@
     
     // Semi Finals
     html += '<div class="bracket-round">';
-    html += '<h3>Semi Finals</h3>';
+    html += '<h3>🔥 Semi Finals</h3>';
     html += '<div class="bracket-matches">';
     html += `<div class="bracket-match semifinal">
-      <strong>SF1:</strong> Winner QF1 vs Winner QF4
+      <div class="team-name">Winner QF1</div>
+      <div class="match-vs">vs</div>
+      <div class="team-name">Winner QF4</div>
+      <div style="margin-top: 10px; font-size: 12px; opacity: 0.8;">SF1</div>
     </div>`;
     html += `<div class="bracket-match semifinal">
-      <strong>SF2:</strong> Winner QF2 vs Winner QF3
+      <div class="team-name">Winner QF2</div>
+      <div class="match-vs">vs</div>
+      <div class="team-name">Winner QF3</div>
+      <div style="margin-top: 10px; font-size: 12px; opacity: 0.8;">SF2</div>
     </div>`;
     html += '</div></div>';
     
     // Final
     html += '<div class="bracket-round">';
-    html += '<h3>Final</h3>';
+    html += '<h3>👑 Grand Final</h3>';
     html += '<div class="bracket-matches">';
     html += `<div class="bracket-match final">
-      <strong>🏆 FINAL:</strong> Winner SF1 vs Winner SF2
+      <div class="team-name">Winner SF1</div>
+      <div class="match-vs">vs</div>
+      <div class="team-name">Winner SF2</div>
+      <div style="margin-top: 15px; font-size: 14px; opacity: 0.9; letter-spacing: 2px;">🏆 CHAMPION 🏆</div>
     </div>`;
     html += '</div></div>';
     
