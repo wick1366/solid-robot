@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Virginia Legends Cricket 2025</title>
+<style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(to right, #f5f7fa, #c3cfe2);
+      padding: 10px;
+      margin: 0;
+      text-align: center;
+    }
+    
+    h1 {
+      background: linear-gradient(to right, #ff6a00, #ee0979);
+      color: white;
+      padding: 20px;
+      border-radius: 10px;
+      font-size: 2em;
+      font-weight: bold;
+      text-align: center;
+      margin-bottom: 10px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+    
+    #resultsBox {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      margin-bottom: 30px;
+    }
+    
+    .result-card {
+      background: #fff9c4;
+      border-left: 5px solid #4caf50;
+      border-radius: 8px;
+      padding: 15px;
+      max-width: 800px;
+      margin: auto;
+      font-size: 16px;
+      line-height: 1.5;
+      color: #333;
+    }
+    
+    .group-section {
+      margin: 30px auto;
+      max-width: 95%;
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      overflow: hidden;
+    }
+    
+    .group-title {
+      background: linear-gradient(to right, #42a5f5, #7e57c2);
+      color: white;
+      padding: 12px;
+      font-size: 18px;
+      font-weight: bold;
+      text-align: center;
+    }
+    
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14px;
+      background: white;
+    }
+    
+    th {
+      background-color: #3949ab;
+      color: white;
+      padding: 10px;
+      text-align: center;
+      font-weight: 600;
+      border: 1px solid #ccc;
+    }
+    
+    td {
+      padding: 10px;
+      text-align: center;
+      color: #333;
+      border: 1px solid #ccc;
+      background-color: #fafafa;
+    }
+    
+    tr:nth-child(even) td {
+      background-color: #f0f0f0;
+    }
+    
+    tr:hover td {
+      background-color: #e1bee7;
+    }
+    
+    .qualified-row {
+      background-color: #2196f3 !important;
+      color: white !important;
+      font-weight: bold;
+      animation: blink 4s ease-in-out infinite;
+    }
+    
+    .qualified-row td {
+      background-color: #2196f3 !important;
+      color: white !important;
+      font-weight: bold;
+    }
+    
+    .qualified-row:hover td {
+      background-color: #1976d2 !important;
+      color: white !important;
+    }
+    
+    @keyframes blink {
+      0% { background-color: #2196f3; }
+      50% { background-color: #64b5f6; }
+      100% { background-color: #2196f3; }
+    }
+    
+    .nrr-cell {
+      white-space: nowrap;
+    }
+    
+    .knockout-section {
+      margin: 30px auto;
+      max-width: 95%;
+      border-radius: 15px;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+      background: white;
+      overflow: hidden;
+      transition: transform 0.2s ease;
+    }
+    
+    .knockout-section:hover {
+      transform: translateY(-3px);
+    }
+    
+    .knockout-title {
+      background: linear-gradient(135deg, #ff6f00 0%, #ff8f00 50%, #ffa000 100%);
+      color: white;
+      padding: 15px;
+      font-size: 22px;
+      font-weight: bold;
+      text-align: center;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .knockout-title::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+      animation: shine 3s infinite;
+    }
+    
+    .playoff-section {
+      margin: 30px auto;
+      max-width: 95%;
+      border-radius: 15px;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+      background: linear-gradient(135deg, #ffffff 0%, #f8f9ff 100%);
+      padding: 25px;
+      transition: transform 0.2s ease;
+    }
+    
+    .playoff-section:hover {
+      transform: translateY(-3px);
+    }
+    
+    .playoff-title {
+      background: linear-gradient(135deg, #d32f2f 0%, #f44336 50%, #e53935 100%);
+      color: white;
+      padding: 15px;
+      font-size: 22px;
+      font-weight: bold;
+      text-align: center;  
+      border-radius: 10px;
+      margin-bottom: 25px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    }
+    
+    .bracket-round {
+      margin-bottom: 35px;
+    }
+    
+    .bracket-round h3 {
+      color: #1a1a1a;
+      font-size: 20px;
+      margin-bottom: 20px;
+      text-align: center;
+      padding: 12px;
+      background: linear-gradient(135deg, #f5f5f5 0%, #e0e0e0 100%);
+      border-radius: 8px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-weight: bold;
+      border: 2px solid #bdbdbd;
+    }
+    
+    .bracket-matches {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+    }
+    
+    .bracket-match {
+      border-radius: 12px;
+      padding: 15px;
+      text-align: center;
+      font-weight: bold;
+      font-size: 16px;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .bracket-match::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+      transition: left 0.5s ease;
+    }
+    
+    .bracket-match:hover::before {
+      left: 100%;
+    }
+    
+    .bracket-match.quarterfinal {
+      background: linear-gradient(135deg, #27ae60 0%, #2ecc71 100%);
+      color: white;
+      border: 3px solid #1e8449;
+      box-shadow: 0 4px 15px rgba(39, 174, 96, 0.3);
+    }
+    
+    .bracket-match.quarterfinal:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 25px rgba(39, 174, 96, 0.4);
+    }
+    
+    .bracket-match.semifinal {
+      background: linear-gradient(135deg, #f39c12 0%, #e67e22 100%);
+      color: white;
+      border: 3px solid #d68910;
+      box-shadow: 0 4px 15px rgba(243, 156, 18, 0.3);
+    }
+    
+    .bracket-match.semifinal:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 25px rgba(243, 156, 18, 0.4);
+    }
+    
+    .bracket-match.final {
+      background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+      color: white;
+      border: 3px solid #a93226;
+      box-shadow: 0 4px 15px rgba(231, 76, 60, 0.3);
+      font-size: 18px;
+      padding: 20px;
+    }
+    
+    .bracket-match.final:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 25px rgba(231, 76, 60, 0.4);
+    }
+    
+    @media screen and (max-width: 768px) {
+      body {
+        padding: 5px;
+      }
+      h1 {
+        font-size: 1.4em;
+        padding: 15px;
+      }
+      .group-title {
+        font-size: 16px;
+      }
+      table, th, td {
+        font-size: 12px;
+        padding: 6px;
+      }
+      .bracket-matches {
+        grid-template-columns: 1fr;
+      }
+      .knockout-title, .playoff-title {
+        font-size: 16px;
+      }
+    }
+    
+    @media screen and (max-width: 600px) {
+      .result-card {
+        font-size: 13px;
+        padding: 10px;
+      }
+      table, th, td {
+        font-size: 12px;
+      }
+      .group-title {
+        font-size: 16px;
+      }
+    }
+    </style>
+</head>
+<body>
+
+<h1>Virginia Legends Cricket 2025</h1>
+<div id="lastUpdated" style="text-align: center; color: #666; font-size: 14px; margin-bottom: 20px;"></div>
+
+<div id="resultsBox">No results yet</div>
+<div id="tables"></div>
+
+<div id="knockoutSection"></div>
+<div id="playoffBrackets"></div>
+
+<section id="upload-section">
+</section>
+<script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
+<script>
+    let allResults = [];
+    let resultIndex = 0;
+    let scrollInterval;
+
+    function loadResults() {
+      const input = document.getElementById("resultsFileInput");
+      if (!input.files.length) {
+        alert("Please select a match results CSV file.");
+        return;
+      }
+
+      Papa.parse(input.files[0], {
+        header: true,
+        skipEmptyLines: true,
+        complete: function(results) {
+          const data = results.data;
+          allResults = [];
+
+          data.forEach(row => {
+            const line = `🏏 <strong>Group ${row['Group'] || ''}</strong> –
+              <strong>${row['Team1'] || ''}</strong> ${row['Team1 Runs'] || 0}/${row['Wickets'] ?? '--'} (${(row['Overs'] ? parseFloat(row['Overs']).toFixed(1) : '--')} ov)
+              vs
+              <strong>${row['Team2'] || ''}</strong> ${row['Team2 Runs'] || 0}/${row['Wickets_1'] ?? '--'} (${(row['Overs_1'] ? parseFloat(row['Overs_1']).toFixed(1) : '--')} ov)
+              — Result: <strong>${row['Result'] || 'N/A'}</strong>`;
+            allResults.push(line);
+          });
+
+          resultIndex = 0;
+          displayNextResults();
+          if (scrollInterval) clearInterval(scrollInterval);
+          scrollInterval = setInterval(displayNextResults, 10000);
+        }
+      });
+    }
+
+    function displayNextResults() {
+      const box = document.getElementById("resultsBox");
+      if (allResults.length === 0) {
+        box.innerHTML = "No match data available.";
+        return;
+      }
+
+      let html = "";
+      for (let i = 0; i < 2; i++) {
+        const idx = (resultIndex + i) % allResults.length;
+        html += `<div>${allResults[idx]}</div>`;
+      }
+
+      resultIndex = (resultIndex + 2) % allResults.length;
+      
+    let wrappedHTML = allResults.slice(resultIndex, resultIndex + 2).map(result => `
+      <div class="result-card">
+        ${result}
+      </div>
+    `).join('');
+    box.innerHTML = wrappedHTML;
+    
+    }
+  </script>
+<script>
+  function loadCSV() {
+    const input = document.getElementById('csvFileInput');
+    if (!input.files.length) {
+      alert('Please select a CSV file.');
+      return;
+    }
+
+    const reader = new FileReader();
+    reader.onload = function(e) {
+      const text = e.target.result;
+      const rows = text.trim().split('\n').map(row => row.split(','));
+      const headers = rows[0];
+      const groupIndex = headers.indexOf("Group");
+      const teamIndex = headers.indexOf("Team");
+      const pointsIndex = headers.indexOf("Points");
+      const nrrIndex = headers.indexOf("NRR");
+
+      const visibleHeaders = headers.filter((_, i) => i !== groupIndex);
+      const groupData = {};
+      for (let i = 1; i < rows.length; i++) {
+        const row = rows[i];
+        const group = row[groupIndex];
+        if (!groupData[group]) groupData[group] = [];
+        groupData[group].push(row);
+      }
+
+      const tablesDiv = document.getElementById('tables');
+      tablesDiv.innerHTML = '';
+
+      for (const group in groupData) {
+        const rows = groupData[group];
+        rows.sort((a, b) => {
+          let pointsDiff = parseInt(b[pointsIndex]) - parseInt(a[pointsIndex]);
+          if (pointsDiff !== 0) return pointsDiff;
+          return parseFloat(b[nrrIndex]) - parseFloat(a[nrrIndex]);
+        });
+
+        
+    const topTeamNames = new Set([rows[0][teamIndex], rows[1]?.[teamIndex] || ""]);
+    const medalMap = {};
+    medalMap[rows[0][teamIndex]] = "🥇 ";
+    if (rows.length > 1) {
+      medalMap[rows[1][teamIndex]] = "🥈 ";
+    }
+    
+        const bottomTeamNames = new Set([
+          rows[rows.length - 1]?.[teamIndex],
+          rows[rows.length - 2]?.[teamIndex]
+        ]);
+
+        let html = '<div class="group-section">';
+        html += '<div class="group-title">Group ' + group + '</div>';
+        html += '<table><thead><tr>';
+        visibleHeaders.forEach(h => html += '<th>' + h + '</th>');
+        html += '</tr></thead><tbody>';
+
+        rows.forEach(row => {
+          const team = row[teamIndex];
+          let rowClass = '';
+          if (topTeamNames.has(team)) rowClass = 'top-team-row';
+          else if (bottomTeamNames.has(team)) rowClass = 'bottom-team-row';
+
+          html += `<tr class="${rowClass}">`;
+          row.forEach((cell, i) => {
+            if (i !== groupIndex) {
+              let cellContent = cell;
+              if (headers[i] === "NRR") {
+                cellContent = parseFloat(cell).toFixed(3);
+              }
+              
+    if (headers[i] === "NRR") {
+      html += `<td class='nrr-cell'>${cellContent}</td>`;
+    } else {
+      html += `<td>${cellContent}</td>`;
+    }
+    
+            }
+          });
+          html += '</tr>';
+        });
+
+        html += '</tbody></table></div></div>';
+        tablesDiv.innerHTML += html;
+      }
+    };
+    reader.readAsText(input.files[0]);
+  }
+</script>
+    
+<script>
+  function fetchAndLoadCSV() {
+    // Update timestamp
+    const now = new Date();
+    document.getElementById('lastUpdated').innerHTML = `Last Updated: ${now.toLocaleString()}`;
+    
+    fetch('https://raw.githubusercontent.com/Wick1366/solid-robot/main/tournament_results.csv')
+      .then(response => response.text())
+      .then(text => {
+        const rows = text.trim().split('\n').map(row => row.split(','));
+        const headers = rows[0];
+        const groupIndex = headers.indexOf("Group");
+        const teamIndex = headers.indexOf("Team");
+        const pointsIndex = headers.indexOf("Points");
+        const nrrIndex = headers.indexOf("NRR");
+
+        const visibleHeaders = headers.filter((_, i) => i !== groupIndex);
+        const groupData = {};
+        for (let i = 1; i < rows.length; i++) {
+          const row = rows[i];
+          const group = row[groupIndex];
+          if (!groupData[group]) groupData[group] = [];
+          groupData[group].push(row);
+        }
+
+        // Generate knockout table and brackets
+        generateKnockoutStage(groupData, headers, teamIndex, pointsIndex, nrrIndex);
+
+        const tablesDiv = document.getElementById('tables');
+        tablesDiv.innerHTML = '';
+
+        for (const group in groupData) {
+          const rows = groupData[group];
+          rows.sort((a, b) => {
+            let pointsDiff = parseInt(b[pointsIndex]) - parseInt(a[pointsIndex]);
+            if (pointsDiff !== 0) return pointsDiff;
+            return parseFloat(b[nrrIndex]) - parseFloat(a[nrrIndex]);
+          });
+
+          const topTeamNames = new Set([rows[0][teamIndex], rows[1]?.[teamIndex] || ""]);
+          const bottomTeamNames = new Set([
+            rows[rows.length - 1]?.[teamIndex],
+            rows[rows.length - 2]?.[teamIndex]
+          ]);
+
+          let html = '<div class="group-section">';
+          html += '<div class="group-title">Group ' + group + '</div>';
+          html += '<table><thead><tr>';
+          visibleHeaders.forEach(h => html += '<th>' + h + '</th>');
+          html += '</tr></thead><tbody>';
+
+          rows.forEach((row, index) => {
+            const team = row[teamIndex];
+            let rowClass = '';
+            if (index < 2) rowClass = 'qualified-row'; // Top 2 qualify
+            else if (topTeamNames.has(team)) rowClass = 'top-team-row';
+            else if (bottomTeamNames.has(team)) rowClass = 'bottom-team-row';
+
+            html += `<tr class="${rowClass}">`;
+            row.forEach((cell, i) => {
+              if (i !== groupIndex) {
+                let cellContent = cell;
+                if (headers[i] === "NRR") {
+                  cellContent = parseFloat(cell).toFixed(3);
+                }
+                if (headers[i] === "NRR") {
+                  html += `<td class='nrr-cell'>${cellContent}</td>`;
+                } else {
+                  html += `<td>${cellContent}</td>`;
+                }
+              }
+            });
+            html += '</tr>';
+          });
+
+          html += '</tbody></table></div></div>';
+          tablesDiv.innerHTML += html;
+        }
+      });
+
+    fetch('https://raw.githubusercontent.com/Wick1366/solid-robot/main/match_scores.csv')
+      .then(response => response.text())
+      .then(text => {
+        const data = Papa.parse(text, { header: true, skipEmptyLines: true }).data;
+        const box = document.getElementById("resultsBox");
+
+        if (!data.length) {
+          box.innerHTML = "No match data available.";
+          return;
+        }
+
+        const results = data.map(row => `
+          <div class="result-card">
+            🏏 <strong>Group ${row['Group'] || ''}</strong> –
+            <strong>${row['Team1'] || ''}</strong> ${row['Team1 Runs'] || 0}/${row['Wickets'] ?? '--'} (${(row['Overs'] ? parseFloat(row['Overs']).toFixed(1) : '--')} ov)
+            vs
+            <strong>${row['Team2'] || ''}</strong> ${row['Team2 Runs'] || 0}/${row['Wickets_1'] ?? '--'} (${(row['Overs_1'] ? parseFloat(row['Overs_1']).toFixed(1) : '--')} ov)
+            — Result: <strong>${row['Result'] || 'N/A'}</strong>
+          </div>
+        `).join('');
+
+        box.innerHTML = results;
+      });
+  }
+
+  window.onload = fetchAndLoadCSV;
+  setInterval(fetchAndLoadCSV, 60000); // every 60 seconds
+  
+  function generateKnockoutStage(groupData, headers, teamIndex, pointsIndex, nrrIndex) {
+    const qualifiedTeams = [];
+    
+    // Get top 2 from each group
+    for (const group in groupData) {
+      const rows = groupData[group];
+      rows.sort((a, b) => {
+        let pointsDiff = parseInt(b[pointsIndex]) - parseInt(a[pointsIndex]);
+        if (pointsDiff !== 0) return pointsDiff;
+        return parseFloat(b[nrrIndex]) - parseFloat(a[nrrIndex]);
+      });
+      
+      // Add top 2 teams with their group info
+      if (rows[0]) qualifiedTeams.push({...rows[0], group: group, position: 1});
+      if (rows[1]) qualifiedTeams.push({...rows[1], group: group, position: 2});
+    }
+    
+    // Sort qualified teams by points, then NRR
+    qualifiedTeams.sort((a, b) => {
+      let pointsDiff = parseInt(b[pointsIndex]) - parseInt(a[pointsIndex]);
+      if (pointsDiff !== 0) return pointsDiff;
+      return parseFloat(b[nrrIndex]) - parseFloat(a[nrrIndex]);
+    });
+    
+    // Generate knockout table
+    generateKnockoutTable(qualifiedTeams, headers, teamIndex, pointsIndex, nrrIndex);
+    
+    // Generate playoff brackets
+    generatePlayoffBrackets(qualifiedTeams, teamIndex);
+  }
+  
+  function generateKnockoutTable(teams, headers, teamIndex, pointsIndex, nrrIndex) {
+    const knockoutDiv = document.getElementById('knockoutSection');
+    
+    let html = '<div class="knockout-section">';
+    html += '<div class="knockout-title">🏆 Knockout Stage Qualifiers</div>';
+    html += '<table><thead><tr>';
+    html += '<th>Rank</th><th>Team</th><th>Group</th><th>Points</th><th>NRR</th><th>Played</th><th>Won</th><th>Lost</th>';
+    html += '</tr></thead><tbody>';
+    
+    teams.forEach((team, index) => {
+      html += `<tr class="qualified-row">`;
+      html += `<td><strong>${index + 1}</strong></td>`;
+      html += `<td><strong>${team[teamIndex]}</strong></td>`;
+      html += `<td>${team.group}</td>`;
+      html += `<td>${team[pointsIndex]}</td>`;
+      html += `<td class="nrr-cell">${parseFloat(team[nrrIndex]).toFixed(3)}</td>`;
+      
+      // Add other stats if they exist in headers
+      const playedIndex = headers.indexOf("Played");
+      const wonIndex = headers.indexOf("Won");
+      const lostIndex = headers.indexOf("Lost");
+      
+      html += `<td>${playedIndex >= 0 ? team[playedIndex] : 'N/A'}</td>`;
+      html += `<td>${wonIndex >= 0 ? team[wonIndex] : 'N/A'}</td>`;
+      html += `<td>${lostIndex >= 0 ? team[lostIndex] : 'N/A'}</td>`;
+      html += '</tr>';
+    });
+    
+    html += '</tbody></table></div>';
+    knockoutDiv.innerHTML = html;
+  }
+  
+  function generatePlayoffBrackets(teams, teamIndex) {
+    const bracketsDiv = document.getElementById('playoffBrackets');
+    
+    let html = '<div class="playoff-section">';
+    html += '<div class="playoff-title">🏟️ Playoff Brackets</div>';
+    
+    // Quarter Finals
+    html += '<div class="bracket-round">';
+    html += '<h3>Quarter Finals</h3>';
+    html += '<div class="bracket-matches">';
+    
+    if (teams.length >= 8) {
+      html += `<div class="bracket-match quarterfinal">
+        <strong>QF1:</strong> ${teams[0][teamIndex]} vs ${teams[7][teamIndex]}
+      </div>`;
+      html += `<div class="bracket-match quarterfinal">
+        <strong>QF2:</strong> ${teams[1][teamIndex]} vs ${teams[6][teamIndex]}
+      </div>`;
+      html += `<div class="bracket-match quarterfinal">
+        <strong>QF3:</strong> ${teams[2][teamIndex]} vs ${teams[5][teamIndex]}
+      </div>`;
+      html += `<div class="bracket-match quarterfinal">
+        <strong>QF4:</strong> ${teams[3][teamIndex]} vs ${teams[4][teamIndex]}
+      </div>`;
+    }
+    
+    html += '</div></div>';
+    
+    // Semi Finals
+    html += '<div class="bracket-round">';
+    html += '<h3>Semi Finals</h3>';
+    html += '<div class="bracket-matches">';
+    html += `<div class="bracket-match semifinal">
+      <strong>SF1:</strong> Winner QF1 vs Winner QF4
+    </div>`;
+    html += `<div class="bracket-match semifinal">
+      <strong>SF2:</strong> Winner QF2 vs Winner QF3
+    </div>`;
+    html += '</div></div>';
+    
+    // Final
+    html += '<div class="bracket-round">';
+    html += '<h3>Final</h3>';
+    html += '<div class="bracket-matches">';
+    html += `<div class="bracket-match final">
+      <strong>🏆 FINAL:</strong> Winner SF1 vs Winner SF2
+    </div>`;
+    html += '</div></div>';
+    
+    html += '</div>';
+    bracketsDiv.innerHTML = html;
+  }
+</script>
+
+</body>
+</html>
